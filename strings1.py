@@ -21,12 +21,48 @@ def maxCommonSubstringLength(str1, str2):
 
     return subMax
 
-str1 = input("First word: ")
-str2 = input("Second word: ")
+def isSubstring(sub, str):
+    # return True if the length of the common substring
+    # is the same as the length of the substring
+    return False
 
-maxSub = maxCommonSubstringLength(str1, str2)
+def haveCommonKSubstring(k, str1, str2):
+    return False
 
-print(maxSub)
+def isPrefix(pre, str):
+    lenPre = len(pre)
+    lenStr = len(str)
+    
+    if lenStr < lenPre:
+        return False
 
-exit()
+    for i in range(lenPre):
+        if str[i] != pre[i]:
+            return False
+    return True
 
+def test_maxCommonSubstringLength():
+    str1 = input("First word: ")
+    str2 = input("Second word: ")
+
+    maxSub = maxCommonSubstringLength(str1, str2)
+
+    print(maxSub)
+
+def test_isPrefix():
+    assert not isPrefix("123", "456") # not prefix
+    assert not isPrefix("1234", "56") # prefix too long
+    assert isPrefix("", "123456") # empty prefix
+    assert isPrefix("", "") # empty prefix and string
+    assert isPrefix("123", "123") # same
+    assert isPrefix("12", "123") # matching prefix
+    print("test_isPrefix passed")
+
+
+def main():
+    # test_maxCommonSubstringLength()
+    # test_isPrefix()
+    pass
+
+if __name__ == "__main__":
+    main()
