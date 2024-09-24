@@ -24,7 +24,16 @@ def maxCommonSubstringLength(str1, str2):
 def isSubstring(sub, str):
     # return True if the length of the common substring
     # is the same as the length of the substring
-    return False
+
+    lenSub = len(sub)
+    lenStr = len(str)
+    
+    if lenStr < lenSub:
+        return False
+
+    commonSubStrLen = maxCommonSubstringLength(sub, str)
+
+    return lenSub == commonSubStrLen
 
 def haveCommonKSubstring(k, str1, str2):
     return False
@@ -58,10 +67,21 @@ def test_isPrefix():
     assert isPrefix("12", "123") # matching prefix
     print("test_isPrefix passed")
 
+def test_isSubstring():
+    assert isSubstring("", "")
+    assert isSubstring("", "1")
+    assert not isSubstring("1", "")
+    assert isSubstring("123", "123")
+    assert not isSubstring("12", "3456")
+    assert isSubstring("12", "123456")
+    assert isSubstring("34", "123456")
+    assert isSubstring("56", "123456")
+    print("test_isSubstring passed")
 
 def main():
     # test_maxCommonSubstringLength()
     # test_isPrefix()
+    # test_isSubstring()
     pass
 
 if __name__ == "__main__":
