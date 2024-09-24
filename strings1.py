@@ -1,5 +1,6 @@
+import test_input as test
+
 def maxCommonSubstringLength(str1, str2):
-    
     sub = 0
     subMax = 0
     # find length of input arrays.
@@ -21,6 +22,13 @@ def maxCommonSubstringLength(str1, str2):
 
     return subMax
 
+def haveCommonKSubstring(k, str1, str2):
+    subMax = maxCommonSubstringLength(str1, str2)
+    if subMax >= k:
+        return True
+    else:
+        return False
+            
 def isSubstring(sub, str):
     # return True if the length of the common substring
     # is the same as the length of the substring
@@ -34,9 +42,6 @@ def isSubstring(sub, str):
     commonSubStrLen = maxCommonSubstringLength(sub, str)
 
     return lenSub == commonSubStrLen
-
-def haveCommonKSubstring(k, str1, str2):
-    return False
 
 def isPrefix(pre, str):
     lenPre = len(pre)
@@ -57,6 +62,9 @@ def test_maxCommonSubstringLength():
     maxSub = maxCommonSubstringLength(str1, str2)
 
     print(maxSub)
+
+def test_haveCommonKSubstring():
+    pass
 
 def test_isPrefix():
     assert not isPrefix("123", "456") # not prefix
@@ -79,10 +87,31 @@ def test_isSubstring():
     print("test_isSubstring passed")
 
 def main():
-    # test_maxCommonSubstringLength()
-    # test_isPrefix()
-    # test_isSubstring()
-    pass
+
+    command = "_"
+    print("Select test or exit:")
+    print("Test Max Common Substring Length: " + test.TEST_MAX_COMMON_SUBSTRING + " ")
+    print("Test Common K Substring: " + test.TEST_IS_K_SUBSTRING + " ")
+    print("Test Substring: " + test.TEST_SUBSTRING + " ")
+    print("Test Prefix: " + test.TEST_PREFIX + " ")
+    print("Test All: " + test.TEST_ALL + " ")
+    while command != test.EXIT:
+        command = input("Chosen Test: ")
+        match command:
+            case test.TEST_MAX_COMMON_SUBSTRING:
+                test_maxCommonSubstringLength()
+            case test.TEST_IS_K_SUBSTRING:
+                test_haveCommonKSubstring()
+            case test.TEST_SUBSTRING:
+                test_isSubstring()
+            case test.TEST_PREFIX:
+                test_isPrefix()
+            case test.TEST_ALL:
+                test_maxCommonSubstringLength()
+                test_haveCommonKSubstring()
+                test_isSubstring()
+                test_isPrefix()
+
 
 if __name__ == "__main__":
     main()
