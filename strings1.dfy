@@ -1,7 +1,16 @@
 // The following method should return true if and only if pre is a prefix of str. That is, str starts with pre. 
 method isPrefix(pre: string, str: string) returns (res:bool)
+    requires |pre| <= |str|
 {
-
+    var i := 0;
+    while  i < |pre|
+        invariant 0 <= i <= |pre|
+    {
+        if pre[i] != str[i]
+        { return false; }
+        i := i + 1;
+    }
+    return true;
 }
 
 // The following method should return true if and only if sub is a substring of str. That is, str contains sub. 
