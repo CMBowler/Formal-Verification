@@ -89,9 +89,8 @@ def test_maxCommonSubstringLength():
 def main():
     test_isPrefix()
     test_isSubstring()
-    # test_haveCommonKSubstring()
-    # test_maxCommonSubstringLength()
-
+    test_haveCommonKSubstring()
+    test_maxCommonSubstringLength()
 
 if __name__ == "__main__":
     main()

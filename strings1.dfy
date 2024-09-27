@@ -78,7 +78,20 @@ method haveCommonKSubstring(k: nat, str1: string, str2: string) returns (found: 
 // The following method should return the natural number len which is equal 
 // to the length of the longest common substring of str1 and str2.
 // Note that every two strings have a common substring of length zero. 
-// method maxCommonSubstringLength(str1: string, str2: string) returns (len:nat)
-// {
+method maxCommonSubstringLength(str1: string, str2: string) returns (len: nat)
+{
+    var kMax := if |str1| < |str2| then |str1| else |str2|;
+    var max := 0;
 
-// }
+    len := 0;
+    var rv: bool;
+    var k: nat := 0;
+    while k < (kMax+1)
+        invariant 0 <= k <= (kMax+1)
+    {
+        rv := haveCommonKSubstring(k, str1, str2);
+        if rv
+            { len := k; }
+        k := k + 1;
+    }
+}
