@@ -1,73 +1,9 @@
-import test_input as test
+from module_ import default__
 
-# The following method should return true if and only if pre is a prefix of str. That is, str starts with pre. 
-def isPrefix(pre, str) -> bool:
-    lenPre = len(pre)
-    lenStr = len(str)
-
-    if lenStr < lenPre:
-        return False
-
-    for i in range(lenPre):
-        if str[i] != pre[i]:
-            return False
-    return True
-
-# The following method should return true if and only if sub is a substring of str. That is, str contains sub. 
-def isSubstring(sub, str) -> bool:
-    lenSub = len(sub)
-    lenStr = len(str)
-
-    if lenStr < lenSub:
-        return False
-
-    if isPrefix(sub, str):
-        return True
-
-    for i in range(lenStr):
-        if i == 0:
-            continue
-        if isPrefix(sub, str[i:]):
-            return True
-
-    return False
-
-# The following method should return true if and only if str1 and str1 have a common substring of length k. 
-def haveCommonKSubstring(k: int, str1, str2) -> bool:
-    lenStr1 = len(str1)
-    lenStr2 = len(str2)
-
-    if k > lenStr1 or k > lenStr2:
-        return False
-
-    if k == 0:
-        return True
-
-    for i in range(lenStr1):
-        if i+k > lenStr1:
-            break
-        for j in range(lenStr2):
-            if j+k > lenStr2:
-                break
-            if isSubstring(str1[i:i+k], str2[j:j+k]):
-                return True
-
-    return False
-
-# The following method should return the natural number len which is equal 
-# to the length of the longest common substring of str1 and str2.
-# Note that every two strings have a common substring of length zero. 
-def maxCommonSubstringLength(str1, str2) -> int:
-    lenStr1 = len(str1)
-    lenStr2 = len(str2)
-
-    kMax = lenStr1 if lenStr1 < lenStr2 else lenStr2
-    max = 0
-
-    for k in range(kMax+1):
-        if haveCommonKSubstring(k, str1, str2):
-            max = k
-    return max
+isPrefix = default__.isPrefix
+isSubstring = default__.isSubstring
+haveCommonKSubstring = default__.haveCommonKSubstring
+maxCommonSubstringLength = default__.maxCommonSubstringLength
 
 def test_isPrefix():
     assert not isPrefix("123", "456") # not prefix
@@ -151,30 +87,11 @@ def test_maxCommonSubstringLength():
     print("test_maxCommonSubstringLength passed")
 
 def main():
+    test_isPrefix()
+    test_isSubstring()
+    # test_haveCommonKSubstring()
+    # test_maxCommonSubstringLength()
 
-    command = "_"
-    print("Select test or exit:")
-    print("Test Max Common Substring Length: " + test.TEST_MAX_COMMON_SUBSTRING + " ")
-    print("Test Common K Substring: " + test.TEST_IS_K_SUBSTRING + " ")
-    print("Test Substring: " + test.TEST_SUBSTRING + " ")
-    print("Test Prefix: " + test.TEST_PREFIX + " ")
-    print("Test All: " + test.TEST_ALL + " ")
-    while command != test.EXIT:
-        command = input("Chosen Test: ")
-        match command:
-            case test.TEST_MAX_COMMON_SUBSTRING:
-                test_maxCommonSubstringLength()
-            case test.TEST_IS_K_SUBSTRING:
-                test_haveCommonKSubstring()
-            case test.TEST_SUBSTRING:
-                test_isSubstring()
-            case test.TEST_PREFIX:
-                test_isPrefix()
-            case test.TEST_ALL:
-                test_isPrefix()
-                test_isSubstring()
-                test_haveCommonKSubstring()
-                test_maxCommonSubstringLength()
 
 if __name__ == "__main__":
     main()

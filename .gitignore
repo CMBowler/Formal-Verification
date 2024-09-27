@@ -4,3 +4,5 @@ $ git status
 *.pyo
 *.dll
 *.dll.*
+
+*-py
