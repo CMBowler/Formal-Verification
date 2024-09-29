@@ -1,6 +1,5 @@
 // The following method should return true if and only if pre is a prefix of str. That is, str starts with pre. 
 method isPrefix(pre: string, str: string) returns (res:bool)
-    // requires |pre| <= |str| // todo: do we want the function to reject these cases?
 {
     if |pre| > |str|
         { return false; }
@@ -18,7 +17,6 @@ method isPrefix(pre: string, str: string) returns (res:bool)
 
 // The following method should return true if and only if sub is a substring of str. That is, str contains sub. 
 method isSubstring(sub: string, str: string) returns (res:bool)
-    // requires |sub| <= |str| // todo: do we want the function to reject these cases?
 {
     if |sub| > |str|
         { return false; }
