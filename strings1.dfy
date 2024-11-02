@@ -44,7 +44,7 @@ method isSubstring(sub: string, str: string) returns (res:bool)
 // The following method should return true if and only if str1 and str1 have a common substring of length k. 
 method haveCommonKSubstring(k: nat, str1: string, str2: string) returns (found: bool)
 {
-    if k > |str1| || k > |str1|
+    if k > |str1| || k > |str2|
         { return false; }
 
     if k == 0

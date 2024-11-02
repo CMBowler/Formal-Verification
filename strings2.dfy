@@ -23,7 +23,7 @@ predicate isSubstringPred(sub:string, str:string)
 predicate isNotSubstringPred(sub:string, str:string)
 {
 	//TODO: your FOL formula should start with a forall
-    // forall k :: k == 0 ==> !isSubstringPred(sub, str) 
+    // forall k :: k == 0 ==> !isSubstringPred(sub, str)
     !isSubstringPred(sub, str)
     //todo: really don't know how they want a forall here
 }
@@ -35,10 +35,20 @@ lemma SubstringNegationLemma(sub:string, str:string)
 {}
 
 
-// predicate haveCommonKSubstringPred(k:nat, str1:string, str2:string)
-// {
-//   //TODO
-// }
+// The following predicate should be true if and only if str1 and str2
+//  have a common substring of length k. 
+// You can refer to the preceding predicates within the body of 
+// this predicate.
+predicate haveCommonKSubstringPred(k:nat, str1:string, str2:string)
+{
+    //TODO
+
+
+
+    isSubstringPred
+
+    (exists i ::
+}
 
 // predicate haveNotCommonKSubstringPred(k:nat, str1:string, str2:string)
 // {
