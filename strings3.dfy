@@ -127,6 +127,8 @@ method maxCommonSubstringLength(str1: string, str2: string) returns (len:nat)
 {
     var check := 0;
     len := 0;
+
+    // these help dafny
     assert isPrefixPred(str1[0..0], str2[0..]);
     assert haveCommonKSubstringPred(0,str1,str2);
 
