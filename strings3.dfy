@@ -60,27 +60,23 @@ method isSubstring(sub: string, str: string) returns (res:bool)
 	ensures  res <==> isSubstringPred(sub, str)
 	ensures !res <==> isNotSubstringPred(sub, str) // This postcondition follows from the above lemma.
 {
-    if |sub| > |str| {
-        res := false;
-    } else {
-        res := false;
+    res := false;
 
-        var rv: bool;
+    var rv: bool;
 
-        var i := 0;
-        while i <= |str|
-            invariant 0 <= i <= |str|+1
-            invariant res <==> (exists j :: 0 <= j < i <= |str|+1 && isPrefixPred(sub, str[j..]))
-            invariant !res <==> (forall j :: 0 <= j < i <= |str|+1 ==> isNotPrefixPred(sub, str[j..]))
-        {
-            rv := isPrefix(sub, str[i..]);
-            if rv {
-                res := true;
-            } else {
-                res := res;
-            }
-            i := i + 1;
+    var i := 0;
+    while i <= |str|
+        invariant 0 <= i <= |str|+1
+        invariant res <==> (exists j :: 0 <= j < i <= |str|+1 && isPrefixPred(sub, str[j..]))
+        invariant !res <==> (forall j :: 0 <= j < i <= |str|+1 ==> isNotPrefixPred(sub, str[j..]))
+    {
+        rv := isPrefix(sub, str[i..]);
+        if rv {
+            res := true;
+        } else {
+            res := res;
         }
+        i := i + 1;
     }
 }
 
