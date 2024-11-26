@@ -20,7 +20,6 @@ method isPrefix(pre: string, str: string) returns (res:bool)
 	ensures  res <==> isPrefixPred(pre,str)
 
 {
-    res := true;
     if |pre| > |str| {
         res:=false;
     } else {
@@ -61,7 +60,6 @@ method isSubstring(sub: string, str: string) returns (res:bool)
 	ensures  res <==> isSubstringPred(sub, str)
 	ensures !res <==> isNotSubstringPred(sub, str) // This postcondition follows from the above lemma.
 {
-    res := false;
     if |sub| > |str| {
         res := false;
     } else {
