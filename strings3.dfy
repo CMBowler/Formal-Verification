@@ -62,6 +62,7 @@ method isSubstring(sub: string, str: string) returns (res:bool)
 {
     res := false;
     var i := 0;
+
     while i <= |str|
         invariant 0 <= i <= |str|+1
         invariant res <==> (exists j :: 0 <= j < i <= |str|+1 && isPrefixPred(sub, str[j..]))
@@ -76,7 +77,6 @@ method isSubstring(sub: string, str: string) returns (res:bool)
         i := i + 1;
     }
 }
-
 
 predicate haveCommonKSubstringPred(k:nat, str1:string, str2:string)
 {
@@ -97,7 +97,26 @@ method haveCommonKSubstring(k: nat, str1: string, str2: string) returns (found: 
 	ensures found  <==>  haveCommonKSubstringPred(k,str1,str2)
 	//ensures !found <==> haveNotCommonKSubstringPred(k,str1,str2) // This postcondition follows from the above lemma.
 {
-//TODO: insert your code here
+    if k > |str1| || k > |str2| {
+        found := false;
+    } else {
+        found := false;
+        var i1 := 0;
+
+        while i1 <= |str1|- k
+            invariant 0 <= i1 <= |str1| - k + 1
+            invariant found <==> (exists i2, j2 :: 0 <= i2 < i1 <= |str1| - k + 1 && j2 == i2 + k && isSubstringPred(str1[i2..j2],str2))
+        {
+            var j1 := i1 + k;
+            var rv := isSubstringPred(str1[i1..j1],str2);
+            if rv {
+                found := true;
+            } else {
+                found := found;
+            }
+            i1 := i1 + 1;
+        }
+    }
 }
 
 method maxCommonSubstringLength(str1: string, str2: string) returns (len:nat)
