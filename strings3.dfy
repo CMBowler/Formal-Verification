@@ -95,7 +95,7 @@ lemma commonKSubstringLemma(k:nat, str1:string, str2:string)
 
 method haveCommonKSubstring(k: nat, str1: string, str2: string) returns (found: bool)
 	ensures found  <==>  haveCommonKSubstringPred(k,str1,str2)
-	//ensures !found <==> haveNotCommonKSubstringPred(k,str1,str2) // This postcondition follows from the above lemma.
+	ensures !found <==> haveNotCommonKSubstringPred(k,str1,str2) // This postcondition follows from the above lemma.
 {
     if k > |str1| || k > |str2| {
         found := false;
@@ -106,6 +106,7 @@ method haveCommonKSubstring(k: nat, str1: string, str2: string) returns (found: 
         while i1 <= |str1|- k
             invariant 0 <= i1 <= |str1| - k + 1
             invariant found <==> (exists i2, j2 :: 0 <= i2 < i1 <= |str1| - k + 1 && j2 == i2 + k && isSubstringPred(str1[i2..j2],str2))
+            invariant !found <==> (forall i2, j2 :: 0 <= i2 < i1 <= |str1| - k + 1 && j2 == i2 + k ==> isNotSubstringPred(str1[i2..j2],str2))
         {
             var j1 := i1 + k;
             var rv := isSubstringPred(str1[i1..j1],str2);
