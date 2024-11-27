@@ -120,6 +120,12 @@ method haveCommonKSubstring(k: nat, str1: string, str2: string) returns (found: 
     }
 }
 
+lemma haveCommon0SubstringLemma(str1:string, str2:string)
+    ensures  haveCommonKSubstringPred(0,str1,str2)
+{
+    assert isPrefixPred(str1[0..0], str2[0..]);
+}
+
 method maxCommonSubstringLength(str1: string, str2: string) returns (len:nat)
 	requires (|str1| <= |str2|)
 	ensures (forall k :: len < k <= |str1| ==> !haveCommonKSubstringPred(k,str1,str2))
@@ -128,10 +134,8 @@ method maxCommonSubstringLength(str1: string, str2: string) returns (len:nat)
     var check := 0;
     len := 0;
 
-    // these help dafny
-    assert isPrefixPred(str1[0..0], str2[0..]);
-    assert haveCommonKSubstringPred(0,str1,str2);
-
+    // hint for Dafny
+    haveCommon0SubstringLemma(str1, str2);
 
     while check <= |str1|
         invariant 0 <= check <= |str1| + 1
